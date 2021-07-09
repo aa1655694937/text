@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        .father {
+            position: relative;
+            background-color: pink;
+            width: 300px;
+            height: 350px;
+            border: 5px solid red;
+            margin: 50px auto;
+        }
+
+        .box {
+            width: 300px;
+            height: 350px;
+            overflow: hidden;
+        }
+
+        .box .banner li {
+            width: 300px;
+            height: 350px;
+            float: left;
+        }
+
+        .box li img {
+            width: 300px;
+            height: 280px;
+            margin-top: 70px;
+        }
+
+        .box button {
+            position: absolute;
+            top: 50%;
+            width: 30px;
+            height: 30px;
+            margin-top: -15px;
+        }
+
+        .box .btnl {
+            left: 0;
+        }
+
+        .box .btnr {
+            right: 0;
+        }
+
+        .btn {
+            width: 125px;
+            position: absolute;
+            left: 50%;
+            margin-left: -60px;
+            bottom: 10px;
+        }
+
+        .btn li {
+            width: 15px;
+            height: 15px;
+            background-color: #bbb;
+            border-radius: 50%;
+            margin-right: 10px;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+<div class="father">
+
+    <div class="box">
+        <ul class="banner">
+            <li>
+
+                <img alt="" src="./img/b.jpg"/>
+            </li>
+            <li><img alt="" src="./img/b.jpg"/></li>
+            <li><img alt="" src="./img/demo1.png"/></li>
+            <li><img alt="" src="./img/demo2.gif"/></li>
+            <li><img alt="" src="./img/demo3.png"/></li>
+        </ul>
+        <button class="btnl"><</button>
+        <button class="btnr">></button>
+        <ul class="btn">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</div>
+<script>
+    var area = document.getElementsByClassName("box")[0];
+
+    var ul = document.getElementsByClassName("banner")[0];
+
+    var li = ul.getElementsByTagName("li");
+
+    var btnl = document.getElementsByClassName("btnl")[0];
+
+    var btnr = area.getElementsByClassName("btnr")[0];
+
+    //设置ul的宽度
+    ul.style.width = li[0].clientWidth * li.length + "px";
+
+    var btn = document.getElementsByClassName("btn")[0];
+
+    var btns = btn.getElementsByTagName("li");
+
+    //初始化
+    btns[0].style.background = "red"
+
+    //下标
+    var num = 0;
+
+    var timer;
+
+    /*var flag = true;
+    var flag1 = true;*/
+
+    function mover() {
+        area.scrollLeft++;
+        if (area.scrollLeft % 300 == 0) {
+            for (var j = 0; j < btns.length; j++) {
+                btns[j].style.background = "#bbb"
+            }
+            btns[num].style.background = 'red';
+            clearInterval(timer)
+//					flag1 = true;
+        }
+
+    }
+
+    function movel() {
+        area.scrollLeft--;
+        if (area.scrollLeft % 300 == 0) {
+            for (var j = 0; j < btns.length; j++) {
+                btns[j].style.background = "#bbb"
+            }
+            btns[num].style.background = 'red';
+            clearInterval(timer);
+//					flag = true;
+        }
+
+    }
+
+    btnl.onclick = function () {
+
+        if (true) {
+            if (num == 0) {
+                num = 0;
+                console.log(num)
+
+                return;
+            }
+            num--;
+//					 flag = false;
+            timer = setInterval(movel, 1)
+        }
+
+    }
+
+    btnr.onclick = function () {
+        if (true) {
+            if (num == btns.length - 1) {
+                num = btns.length - 1;
+
+                return;
+            }
+            num++;
+//                   flag1=false;
+            timer = setInterval(mover, 1)
+        }
+
+    }
+</script>
+</body>
+
+</html>
